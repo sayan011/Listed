@@ -1,60 +1,60 @@
-
 //SPDX-License-Identifier: Unlicense
-pragma solidity ^0.8.0; 
-contract Delist{
-    struct Job{
+pragma solidity ^0.8.0;
+contract Delist {
+    struct Job {
         uint8 id;
         address creator;
         string title;
         string url;
         string description;
-        uint8 total_votes;
+        uint8 total_applicants;
     }
-    mapping(uint256 => Resource) public resources;
-    event savingsEvent(uint256 indexed _resourceId);
-    uint8 public numResource;
+    mapping(uint256 => Job) public jobs;
+    event savingsEvent(uint256 indexed _jobId);
+    uint8 public numJob;
     constructor() {
-        numResource = 0;
+        numJob = 0;
         
     }
-    function addResource(
+    function addJob(
         string memory title,
+        string memory position,
         string memory url,
         string memory description
     ) public {
-        Resource storage resource = resources[numResource];
-        resource.creator = msg.sender;
-        resource.total_votes = 0;
-        resources[numResource] = Resource(
-            numResource,
-            resource.creator,
+        Job storage job = jobs[numJob];
+        job.creator = msg.sender;
+        job.total_applicants = 0;
+        jobs[numJob] = Job(
+            numJob,
+            job.creator,
             title,
             url,
             description,
-            resource.total_votes
+            job.total_applicants
         );
-        numResource++;
+        numJob++;
     }
-    //return a particular resource
-    function getResource(uint256 resourceId)
+    
+    function getJob(uint256 jobId)
         public
         view
-        returns (Resource memory)
+        returns (Job memory)
     {
-        return resources[resourceId];
+        return jobs[jobId];
     }
-    //return the array of resources
-    function getResources() public view returns (Resource[] memory) {
-        Resource[] memory id = new Resource[](numResource);
-        for (uint256 i = 0; i < numResource; i++) {
-            Resource storage resource = resources[i];
-            id[i] = resource;
+    
+    function getJobs() public view returns (Job[] memory) {
+        Job[] memory id = new Job[](numJob);
+        for (uint256 i = 0; i < numJob; i++) {
+            Job storage job = jobs[i];
+            id[i] = job;
         }
         return id;
     }
     
-    function voteResource(uint256 resourceId) public {
-        Resource storage resource = resources[resourceId];
-        resource.total_votes++;
+    function applyforJob(uint256 jobId) public {
+        Job storage job = jobs[jobId];
+        job.total_applicants++;
     }
 }
