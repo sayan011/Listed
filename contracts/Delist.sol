@@ -19,7 +19,7 @@ contract Delist {
     function addJob(
         string memory title,
         string memory position,
-        string memory url,
+        string memory url ,
         string memory description
     ) public {
         Job storage job = jobs[numJob];
