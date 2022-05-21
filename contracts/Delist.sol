@@ -16,25 +16,26 @@ contract Delist {
         numJob = 0;
         
     }
-    function addJob(
-        string memory title,
-        string memory position,
-        string memory url ,
-        string memory description
-    ) public {
-        Job storage job = jobs[numJob];
-        job.creator = msg.sender;
-        job.total_applicants = 0;
-        jobs[numJob] = Job(
-            numJob,
-            job.creator,
-            title,
-            url,
-            description,
-            job.total_applicants
-        );
-        numJob++;
-    }
+    // function addJob(
+    //     string memory title,
+    //     string memory position,
+    //     string memory url ,
+    //     string memory description
+    // ) public {
+    //     Job storage job = jobs[numJob];
+    //     job.creator = msg.sender;
+    //     job.total_applicants = 0;
+    //     jobs[numJob] = Job(
+    //         numJob,
+    //         job.creator,
+    //         title,
+    //         url,
+    //         description,
+    //         job.total_applicants,
+            
+    //     );
+    //     numJob++;
+    // }
     
     function getJob(uint256 jobId)
         public
