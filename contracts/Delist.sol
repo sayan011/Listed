@@ -1,6 +1,9 @@
 //SPDX-License-Identifier: Unlicense
 pragma solidity ^0.8.0;
 contract Delist {
+
+
+    uint public counter;
     struct Job {
         uint8 id;
         address creator;
